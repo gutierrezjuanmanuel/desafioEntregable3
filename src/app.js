@@ -35,6 +35,26 @@ app.get("/products", async (req, res) => {
     }
 })
 
+app.get("/products/pid", async (req, res) => {
+    try {
+        let pid = parseInt(req.params.pid);
+
+        const buscado = await manager.getProductById(pid);
+
+        if (buscado) {
+            return res.send(buscado);
+        } else {
+            return res.send("ID de producto incorrecto , vuelva mas tarde");
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.send("Error , vamos a morir");
+
+    }
+
+})
+
 //Listen:
 
 app.listen(PUERTO, () => {
@@ -72,11 +92,11 @@ app.listen(PUERTO, () => {
 /*
 const http = require("http");
 
-//Segundo pasito, vamos a crear el servidor: 
+//Segundo pasito, vamos a crear el servidor:
 
 const server = http.createServer((request, response) => {
     response.end("Mi primera chamba!");
-    //Este método del objeto response me permite enviar una respuesta al cliente. 
+    //Este método del objeto response me permite enviar una respuesta al cliente.
 });
 */
 //Tercer pasito: vamos a poner a escuchar a nuestro server en un puerto. 
@@ -103,51 +123,51 @@ server.listen(PUERTO, ()=> {
 //Crear nuestra ruta: 
 
 //app.get("/", (req, res) => {
-    //Cuando utilizo "/" estoy haciendo referencia a la ruta raíz de mi aplicación. 
+//Cuando utilizo "/" estoy haciendo referencia a la ruta raíz de mi aplicación.
 //    res.send("Mi primera chamba, pero con Express");
 //})
 
 //Ponemos a escuchar nuestro servidor: 
 
 //app.listen(PUERTO, () => {
-  //  console.log(`Escuchando en http://localhost:${PUERTO}`);
+//  console.log(`Escuchando en http://localhost:${PUERTO}`);
 //})
 
 //Practicamos con más rutas: (endpoints)
 
 //app.get('/tienda', (req, res)=> {
-  //  res.send("Bienvenido a la tienda");
+//  res.send("Bienvenido a la tienda");
 //})
 
 
 //app.get('/contacto', (req, res)=> {
-  //  res.send("Bienvenidos a contacto");
+//  res.send("Bienvenidos a contacto");
 //})
 
 //5) Objeto Request: es un objeto que representa la petición que realiza el cliente. 
 
 //const misProductos = [
-  //  {id:1, nombre:"Fideos", precio: 150},
-   // {id:2, nombre:"Arroz", precio: 200},
-   // {id:3, nombre:"Aceite", precio: 900},
-   // {id:4, nombre:"Coca Cola", precio: 500},
-   // {id:5, nombre:"Pan", precio: 300},
+//  {id:1, nombre:"Fideos", precio: 150},
+// {id:2, nombre:"Arroz", precio: 200},
+// {id:3, nombre:"Aceite", precio: 900},
+// {id:4, nombre:"Coca Cola", precio: 500},
+// {id:5, nombre:"Pan", precio: 300},
 //]
 
 //req.params
 
 //app.get("/productos/:id", (req, res) => {
-    //res.send(misProductos);
-  //  let id = req.params.id;
-    //Recuerde que la info viene en string. 
+//res.send(misProductos);
+//  let id = req.params.id;
+//Recuerde que la info viene en string.
 
-    //const producto = misProductos.find(item => item.id == id );
+//const producto = misProductos.find(item => item.id == id );
 
-   // if(producto) {
-     //   res.send(producto);
-   // }else{
-     //   res.send("Producto no encontrado");
-   // }
+// if(producto) {
+//   res.send(producto);
+// }else{
+//   res.send("Producto no encontrado");
+// }
 //})
 
 //req.query: query se refiere a las multiples consutlas que se pueden realizar en determinado endpoint. 
@@ -160,12 +180,12 @@ server.listen(PUERTO, ()=> {
 //Ejemplo: 
 
 //app.get('/clientes', (req, res)=> {
-    //let nombre = req.query.nombre;
-    //let apellido = req.query.apellido; 
+//let nombre = req.query.nombre;
+//let apellido = req.query.apellido;
 
-  //  let {nombre, apellido} = req.query; 
+//  let {nombre, apellido} = req.query;
 
-   // res.send(`Bienvenido ${nombre} ${apellido}`);
+// res.send(`Bienvenido ${nombre} ${apellido}`);
 
 //})
 
@@ -174,10 +194,10 @@ server.listen(PUERTO, ()=> {
 //Para el limite voy a trabajar con query: 
 
 //app.get("/product", (req, res)=> {
-    //let limit = parseInt(req.query.limit);
+//let limit = parseInt(req.query.limit);
 
-    //const productos = misProductos.slice(0, limit);
-  //  res.send(productos);
+//const productos = misProductos.slice(0, limit);
+//  res.send(productos);
 //})
 
 
