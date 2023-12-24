@@ -94,7 +94,7 @@ server.listen(PUERTO, ()=> {
 
 //Importamos el modulo: 
 
-const express = require("express");
+//const express = require("express");
 
 //Creamos una app: 
 
@@ -102,88 +102,88 @@ const express = require("express");
 
 //Crear nuestra ruta: 
 
-app.get("/", (req, res) => {
+//app.get("/", (req, res) => {
     //Cuando utilizo "/" estoy haciendo referencia a la ruta raíz de mi aplicación. 
-    res.send("Mi primera chamba, pero con Express");
-})
+//    res.send("Mi primera chamba, pero con Express");
+//})
 
 //Ponemos a escuchar nuestro servidor: 
 
-app.listen(PUERTO, () => {
-    console.log(`Escuchando en http://localhost:${PUERTO}`);
-})
+//app.listen(PUERTO, () => {
+  //  console.log(`Escuchando en http://localhost:${PUERTO}`);
+//})
 
 //Practicamos con más rutas: (endpoints)
 
-app.get('/tienda', (req, res)=> {
-    res.send("Bienvenido a la tienda");
-})
+//app.get('/tienda', (req, res)=> {
+  //  res.send("Bienvenido a la tienda");
+//})
 
 
-app.get('/contacto', (req, res)=> {
-    res.send("Bienvenidos a contacto");
-})
+//app.get('/contacto', (req, res)=> {
+  //  res.send("Bienvenidos a contacto");
+//})
 
 //5) Objeto Request: es un objeto que representa la petición que realiza el cliente. 
 
-const misProductos = [
-    {id:1, nombre:"Fideos", precio: 150},
-    {id:2, nombre:"Arroz", precio: 200},
-    {id:3, nombre:"Aceite", precio: 900},
-    {id:4, nombre:"Coca Cola", precio: 500},
-    {id:5, nombre:"Pan", precio: 300},
-]
+//const misProductos = [
+  //  {id:1, nombre:"Fideos", precio: 150},
+   // {id:2, nombre:"Arroz", precio: 200},
+   // {id:3, nombre:"Aceite", precio: 900},
+   // {id:4, nombre:"Coca Cola", precio: 500},
+   // {id:5, nombre:"Pan", precio: 300},
+//]
 
 //req.params
 
-app.get("/productos/:id", (req, res) => {
+//app.get("/productos/:id", (req, res) => {
     //res.send(misProductos);
-    let id = req.params.id;
+  //  let id = req.params.id;
     //Recuerde que la info viene en string. 
 
-    const producto = misProductos.find(item => item.id == id );
+    //const producto = misProductos.find(item => item.id == id );
 
-    if(producto) {
-        res.send(producto);
-    }else{
-        res.send("Producto no encontrado");
-    }
-})
+   // if(producto) {
+     //   res.send(producto);
+   // }else{
+     //   res.send("Producto no encontrado");
+   // }
+//})
 
 //req.query: query se refiere a las multiples consutlas que se pueden realizar en determinado endpoint. 
 
 //Atentos: si queremos trabajar con datos complejos se recomienda usar la linea: 
 
-app.use(express.urlencoded({extended:true})); 
+//app.use(express.urlencoded({extended:true})); 
 
 
 //Ejemplo: 
 
-app.get('/clientes', (req, res)=> {
+//app.get('/clientes', (req, res)=> {
     //let nombre = req.query.nombre;
     //let apellido = req.query.apellido; 
 
-    let {nombre, apellido} = req.query; 
+  //  let {nombre, apellido} = req.query; 
 
-    res.send(`Bienvenido ${nombre} ${apellido}`);
+   // res.send(`Bienvenido ${nombre} ${apellido}`);
 
-})
+//})
 
 //Ejemplo para el desafio n°3: 
 
 //Para el limite voy a trabajar con query: 
 
-app.get("/product", (req, res)=> {
-    let limit = parseInt(req.query.limit);
+//app.get("/product", (req, res)=> {
+    //let limit = parseInt(req.query.limit);
 
-    const productos = misProductos.slice(0, limit);
-    res.send(productos);
-})
+    //const productos = misProductos.slice(0, limit);
+  //  res.send(productos);
+//})
 
 
 
 //Consejito para el desafio: no se olviden de importar el product manager: en la parte superior del codigo
 
-const ProductManger = require("./product-manager.js");
+//const ProductManger = require("./product-manager.js");
 
 //const manager = new ProductManger("./productos.json"); 
