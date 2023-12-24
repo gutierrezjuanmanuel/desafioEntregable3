@@ -58,7 +58,7 @@ app.get("/products/pid", async (req, res) => {
 //Listen:
 
 app.listen(PUERTO, () => {
-    console.log("Escuchando en el puerto 8080")
+    console.log(`Escuchando en http://localhost:${PUERTO}`);
 })
 
 
@@ -122,10 +122,10 @@ server.listen(PUERTO, ()=> {
 
 //Crear nuestra ruta: 
 
-npmapp.get("/", (req, res) => {
+//app.get("/", (req, res) => {
 //Cuando utilizo "/" estoy haciendo referencia a la ruta raíz de mi aplicación.
-   res.send("Mi primera chamba, pero con Express");
-})
+ //  res.send("Mi primera chamba, pero con Express");
+//})
 
 //Ponemos a escuchar nuestro servidor: 
 
